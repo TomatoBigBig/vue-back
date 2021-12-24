@@ -14,7 +14,7 @@ let server = http.createServer((req, res) => {
     if(req.url === '/api/users'){
         res.end(JSON.stringify(users))
     }else{
-        res.end('aiwoqu asdasdasdwwshayebushi')
+        res.end('aiwoqu 求你了！！！！！')
     }
 });
 server.listen(3001,() => {
