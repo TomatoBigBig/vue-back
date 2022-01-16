@@ -45,7 +45,7 @@ let server = http.createServer((req, res) => {
             if(signature !== sign(body)){
                 res.end('shayebushi')
             }
-            res.end(JSON.stringify({OK:true}))
+            
             if(event == 'push'){
                 let child = spawn('sh',['./learning.sh']);
                 let buffers = [];
@@ -57,6 +57,7 @@ let server = http.createServer((req, res) => {
                     console.log(log)
                 })
             }
+            res.end(JSON.stringify({OK:true}))
         })
         
     }else{
