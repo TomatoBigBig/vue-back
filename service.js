@@ -34,11 +34,11 @@ let server = http.createServer((req, res) => {
         let buffers = []
         req.on('data',function(buffer){
             buffers.push(buffer);
-            console.log('buffers'+buffers)
+            // console.log('buffers'+buffers)
         })
         req.on('end',function(buffer){
             let body = Buffer.concat(buffers);
-            console.log('body'+body)
+            // console.log('body'+body)
             let event = req.headers['x-gitHub-event'];// event = push
             //github请求来的时候，需要传递请求体body， 另外还会传一个signature过来,你需要验证签名
             let signature = req.headers['x-hub-signature'];
@@ -54,7 +54,7 @@ let server = http.createServer((req, res) => {
                 })
                 child.stdout.on('end', function(buffer){
                     let log = Buffer.concat(buffers);
-                    console.log(log)
+                    // console.log(log)
                     
                     res.end(JSON.stringify({OK:true}))
                 })
