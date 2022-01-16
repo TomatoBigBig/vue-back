@@ -46,19 +46,20 @@ let server = http.createServer((req, res) => {
                 res.end('shayebushi')
             }
             
-            if(event == 'push'){
-                let child = spawn('sh',['./learning.sh']);
-                let buffers = [];
-                child.stdout.on('data', function(buffer){
-                    buffers.push(buffer)
-                })
-                child.stdout.on('end', function(buffer){
-                    let log = Buffer.concat(buffers);
-                    // console.log(log)
+            let child = spawn('sh',['./learning.sh']);
+            
+            res.end(JSON.stringify({OK:true}))
+            // if(event == 'push'){
+            //     let buffers = [];
+            //     child.stdout.on('data', function(buffer){
+            //         buffers.push(buffer)
+            //     })
+            //     child.stdout.on('end', function(buffer){
+            //         let log = Buffer.concat(buffers);
+            //         // console.log(log)
                     
-                    res.end(JSON.stringify({OK:true}))
-                })
-            }
+            //     })
+            // }
         })
         
     }else{
