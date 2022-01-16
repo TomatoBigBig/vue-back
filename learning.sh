@@ -2,7 +2,7 @@
 WORK_PATH='/usr/projects/learning'
 cd $WORK_PATH
 echo "先清除老代码"
-git reset --hard
+git reset --hard origin/main
 git clean -f
 echo "拉取新代码"
 git pull
