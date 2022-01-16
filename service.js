@@ -33,7 +33,7 @@ let server = http.createServer((req, res) => {
     if(req.url === '/api/users'){
         let buffers = []
         req.on('data',function(buffer){
-            buffers.push(Buffer);
+            buffers.push(buffer);
             console.log('buffers'+buffers)
         })
         req.on('end',function(buffer){
@@ -50,7 +50,7 @@ let server = http.createServer((req, res) => {
                 let child = spawn('sh',['./learning.sh']);
                 let buffers = [];
                 child.stdout.on('data', function(buffer){
-                    buffers.push(Buffer)
+                    buffers.push(buffer)
                 })
                 child.stdout.on('end', function(buffer){
                     let log = Buffer.concat(buffers);
