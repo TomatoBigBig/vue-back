@@ -33,9 +33,11 @@ let server = http.createServer((req, res) => {
         let buffers = []
         req.on('data',function(buffer){
             buffers.push(Buffer);
+            console.log('buffers'+buffers)
         })
         req.on('end',function(buffer){
             let body = Buffer.concat(buffers);
+            console.log('body'+body)
             let event = req.header['x-gitHub-event'];// event = push
             //github请求来的时候，需要传递请求体body， 另外还会传一个signature过来,你需要验证签名
             let signature = req.headers['x-hub-signature'];
