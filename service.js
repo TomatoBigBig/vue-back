@@ -23,6 +23,7 @@
 
 let http = require('http')
 let crypto = require('crypto')
+let {spawn} = require('child_process')
 const SECRET = '123456'
 function sign(body){
     return `sha1=`+crypto.createHmac('sha1',SECRET).update(body).digest('hex')
@@ -44,8 +45,20 @@ let server = http.createServer((req, res) => {
             if(signature !== sign(body)){
                 res.end('shayebushi')
             }
+            res.end(JSON.stringify({OK:true}))
+            if(event == 'push'){
+                let child = spawn('sh',['./learning.sh']);
+                let buffers = [];
+                child.stdout.on('data', function(buffer){
+                    buffers.push(Buffer)
+                })
+                child.stdout.on('end', function(buffer){
+                    let log = Buffer.concat(buffers);
+                    console.log(log)
+                })
+            }
         })
-        res.end(JSON.stringify({OK:true}))
+        
     }else{
         res.end('aiwoqu 求你了！！！！！')
     }
