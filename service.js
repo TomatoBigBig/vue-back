@@ -55,9 +55,10 @@ let server = http.createServer((req, res) => {
                 child.stdout.on('end', function(buffer){
                     let log = Buffer.concat(buffers);
                     console.log(log)
+                    
+                    res.end(JSON.stringify({OK:true}))
                 })
             }
-            res.end(JSON.stringify({OK:true}))
         })
         
     }else{
